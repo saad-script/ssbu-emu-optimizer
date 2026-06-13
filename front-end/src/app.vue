@@ -12,7 +12,7 @@
         <OptionCard class="mt-3 opt-card" :cardTitle="'SSBU Mods'"
           :cardSubtitle="'Add useful mods for training and online play'" :cardDisplayIcon="'mdi-folder-wrench'"
           :isOptimized="user_status.mods_optimized && selected_profile != null"
-          :advancedOptions="[{ id: 'CleanSkyline', label: 'Clean Skyline Plugins' }, { id: 'CleanArc', label: 'Clean Arcropolis Mods' }]"
+          :advancedOptions="[{ id: 'CleanAtmosphere', label: 'Clean Atmosphere Folder' }, { id: 'CleanArc', label: 'Clean Arcropolis Mods' }]"
           @updated="(s, o) => { optUpdated('Mods', s, o) }" />
         <OptionCard class="mt-3 opt-card" :cardTitle="'Save Data'"
           :cardSubtitle="'Overwrite SSBU save with a 100% save for competitive play'"

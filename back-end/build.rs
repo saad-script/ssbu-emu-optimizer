@@ -3,6 +3,8 @@ use std::{env, fs, path::Path};
 const BUNDLED_DATA_FILE_ID: &str = "1OVsIizFF1zZWNfoLiX5gzkzjNaaUbQET";
 
 fn main() {
+    println!("cargo:rerun-if-changed=bundled_data");
+
     let out_dir = env::var("OUT_DIR").unwrap();
     let bundled_data_zip_path = Path::new(&out_dir).join("bundled_data.zip");
 

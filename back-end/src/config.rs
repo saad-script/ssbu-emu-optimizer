@@ -8,7 +8,7 @@ use std::io;
 use std::path::{Path, PathBuf};
 use tauri::path::PathResolver;
 
-pub const DEFAULT_EMU: &str = "yuzu";
+pub const DEFAULT_EMU: EmuType = EmuType::Yuzu;
 pub const SSBU_TITLE_ID: &str = "01006A800016E000";
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -20,7 +20,7 @@ pub enum Optimization {
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum AdvancedOption {
-    CleanSkyline,
+    CleanAtmosphere,
     CleanArc,
 }
 
@@ -49,7 +49,7 @@ impl OptimizerConfig {
         let data_dir = path_resolver
             .data_dir()
             .expect("Unable to get data directory");
-        let default_emu_folder = data_dir.join(DEFAULT_EMU);
+        let default_emu_folder = data_dir.join(DEFAULT_EMU.to_string());
         let mut local_data = LocalPersistantData::load(path_resolver);
         let emu_folder =
             emu_folder.unwrap_or(local_data.emu_folder.clone().unwrap_or(default_emu_folder));
@@ -86,11 +86,14 @@ impl OptimizerConfig {
         }
     }
 
+    pub fn get_emulator_type(&self) -> EmuType {
+        self.emu_filesystem.emu_name.unwrap_or(DEFAULT_EMU)
+    }
+
     pub fn get_emulator_name(&self) -> String {
         self.emu_filesystem
             .emu_name
-            .as_ref()
-            .unwrap_or(&DEFAULT_EMU.to_string())
+            .unwrap_or(DEFAULT_EMU)
             .to_string()
     }
 
@@ -159,9 +162,37 @@ impl LocalPersistantData {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub enum EmuType {
+    Yuzu,
+    Citron,
+    Eden,
+}
+
+impl EmuType {
+    fn new(emu_name: String) -> Self {
+        let emu_name = emu_name.to_lowercase();
+        match emu_name {
+            n if n == "eden" => EmuType::Eden,
+            n if n == "citron" => EmuType::Citron,
+            _ => EmuType::Yuzu,
+        }
+    }
+}
+
+impl ToString for EmuType {
+    fn to_string(&self) -> String {
+        match self {
+            EmuType::Eden => String::from("eden"),
+            EmuType::Citron => String::from("citron"),
+            _ => String::from("yuzu"),
+        }
+    }
+}
+
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct EmuFileSystem {
-    pub emu_name: Option<String>,
+    pub emu_name: Option<EmuType>,
     pub config_folder: Option<PathBuf>,
     pub nand_folder: Option<PathBuf>,
     pub sdmc_folder: Option<PathBuf>,
@@ -170,7 +201,7 @@ pub struct EmuFileSystem {
 impl EmuFileSystem {
     pub fn load<R: tauri::Runtime>(emu_folder: &Path, path_resolver: &PathResolver<R>) -> Self {
         let mut is_local_user_emu_data_folder = false;
-        let emu_name = emu_folder
+        let emu_name_str = emu_folder
             .file_name()
             .map(|f| f.to_string_lossy().to_string())
             .and_then(|f| {
@@ -194,17 +225,17 @@ impl EmuFileSystem {
                 }
                 Some(f)
             });
-        if emu_name.is_none() {
+        if emu_name_str.is_none() {
             return EmuFileSystem::default();
         }
-        let emu_name = emu_name.unwrap();
+        let emu_name = EmuType::new(emu_name_str.unwrap());
 
         let config_dir = if cfg!(windows) || is_local_user_emu_data_folder {
             emu_folder.join("config")
         } else {
             path_resolver
                 .config_dir()
-                .map(|f| f.join(emu_name.as_str()))
+                .map(|f| f.join(emu_name.to_string()))
                 .expect("Unable to find config directory")
         };
 

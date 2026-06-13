@@ -129,7 +129,7 @@ impl AppState {
         });
     }
 
-    pub fn read_config(&self) -> RwLockReadGuard<OptimizerConfig> {
+    pub fn read_config(&self) -> RwLockReadGuard<'_, OptimizerConfig> {
         let config = self
             .config
             .read()
@@ -137,7 +137,7 @@ impl AppState {
         config
     }
 
-    pub fn write_config(&self) -> RwLockWriteGuard<OptimizerConfig> {
+    pub fn write_config(&self) -> RwLockWriteGuard<'_, OptimizerConfig> {
         let config = self
             .config
             .write()
@@ -225,9 +225,9 @@ fn apply_optimization(
         Optimization::Mods => optimizer::optimize_mods(&config, &user_profile, advanced_options),
         Optimization::Save => optimizer::optimize_save(&config, &user_profile),
     };
-    if optimization_result.is_err() {
-        log::error!("Error applying optimization");
-        return Err(optimization_result.unwrap_err().to_string());
+    if let Err(err) = optimization_result {
+        log::error!("Error applying optimization: {}", err);
+        return Err(err.to_string());
     }
 
     let local_data = &mut config.local_data;
