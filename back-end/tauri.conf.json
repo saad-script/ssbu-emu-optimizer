@@ -1,7 +1,7 @@
 {
-  "productName": "yuzu-ssbu-optimizer",
-  "version": "2.0.0",
-  "identifier": "com.saad-script.yuzu-ssbu-optimizer",
+  "productName": "ssbu-emu-optimizer",
+  "version": "3.0.0",
+  "identifier": "com.saad-script.ssbu-emu-optimizer",
   "build": {
     "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build",
@@ -14,8 +14,8 @@
     "copyright": "saad-script",
     "externalBin": [],
     "icon": [
-      "icons/yuzu-ssbu.ico",
-      "icons/yuzu-ssbu.png"
+      "icons/emu-ssbu.ico",
+      "icons/emu-ssbu.png"
     ],
     "longDescription": "",
     "resources": [],
@@ -45,7 +45,7 @@
     },
     "windows": [
       {
-        "title": "yuzu SSBU Optimizer",
+        "title": "SSBU Emulator Optimizer",
         "width": 800,
         "height": 575,
         "fullscreen": false,

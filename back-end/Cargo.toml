@@ -1,9 +1,9 @@
 [package]
-name = "yuzu-ssbu-optimizer"
-version = "2.0.0"
-description = "App to optimize and manage SSBU on the yuzu emulator"
+name = "ssbu-emu-optimizer"
+version = "3.0.0"
+description = "App to optimize and manage SSBU on emulator"
 authors = ["saad-script"]
-default-run = "yuzu-ssbu-optimizer"
+default-run = "ssbu-emu-optimizer"
 edition = "2021"
 rust-version = "1.57"
 
