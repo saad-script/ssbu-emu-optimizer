@@ -1,15 +1,15 @@
 {
   "version": "3.1.0",
   "notes": "Initial auto updater build",
-  "pub_date": "2026-06-22T00:00:00Z",
+  "pub_date": "2026-06-22T19:33:19Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "REPLACE_WITH_WINDOWS_SIGNATURE",
-      "url": "https://github.com/saad-script/ssbu-emu-optimizer/releases/download/v3.1.0/ssbu-emu-optimizer_3.1.0_x64_en-US.msi.zip"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSWjVCY05YVE1FN3M0U0gyNGJkSmxKR1pRVmFsK0RpaG9IckpZR0VkbXNhYWsvVjd0V2Q0MDRzRW5aVi8vVWU0azhtRkFTNXN6dkhFcjF6S2VlWWRzbW9Sc1pVV0YzSWdVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU1OTkzCWZpbGU6c3NidS1lbXUtb3B0aW1pemVyXzMuMS4wX3g2NF9lbi1VUy5tc2kKSVp3dm5tZDZ6L3RFWXUyTXo4aExSRHBVSVdLNFVjRDhJSjE5Sjk4UFNrSUJ0REZrb01rcUNESDlHVGJ3bldDcEl1dEV6THNrUmd1SC9Fbm5JUUk4QUE9PQo=",
+      "url": "https://github.com/saad-script/ssbu-emu-optimizer/releases/download/3.1.0/ssbu-emu-optimizer_3.1.0_x64_en-US.msi"
     },
     "linux-x86_64": {
-      "signature": "REPLACE_WITH_LINUX_SIGNATURE",
-      "url": "https://github.com/saad-script/ssbu-emu-optimizer/releases/download/v3.1.0/ssbu-emu-optimizer_3.1.0_amd64.AppImage.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSWjVCY05YVE1FN21PaXhiTjNPK1pMeGVzWEhJVXRmT0tONnZTM0J6ckQvZUF6S1AvT0xXRVhHc3ptdjBDbDJnVEVSZ3VHeHJPOERNRVFHNUsvT2Fyb0NPb3BBSkNVYmdZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyMTU1ODI5CWZpbGU6c3NidS1lbXUtb3B0aW1pemVyXzMuMS4wX2FtZDY0LkFwcEltYWdlCi9XZDBwRVIxbjZ6WEpIelZsZnBIK0kwYjI4V1hpNXlGQnpZdkRETUhHVGl0RTZzNVFTM29YejRiN2xTaVo5dm5xckovWjJvbk15UUxaVHZRanpHT0NRPT0K",
+      "url": "https://github.com/saad-script/ssbu-emu-optimizer/releases/download/3.1.0/ssbu-emu-optimizer_3.1.0_amd64.AppImage"
     }
   }
 }
