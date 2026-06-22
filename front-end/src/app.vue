@@ -45,6 +45,8 @@
 <script>
 import { invoke } from '@tauri-apps/api/core';
 import { info, error } from "@tauri-apps/plugin-log";
+import { ask } from '@tauri-apps/plugin-dialog';
+import { check } from '@tauri-apps/plugin-updater';
 import { ref } from 'vue';
 
 
@@ -89,6 +91,8 @@ export default {
     }).catch((err) => {
       error(err);
     });
+
+    this.checkForUpdates();
   },
   computed: {
     isAnyOptsEnabled() {
@@ -100,6 +104,37 @@ export default {
     }
   },
   methods: {
+    async checkForUpdates() {
+      try {
+        const update = await check();
+        if (!update) {
+          info('No update available.');
+          return;
+        }
+
+        const shouldInstall = await ask(
+          `Version ${update.version} is available (current ${update.currentVersion}). Download and install now?`,
+          {
+            title: 'Update Available',
+            kind: 'info',
+            okLabel: 'Install',
+            cancelLabel: 'Later',
+          }
+        );
+
+        if (!shouldInstall) {
+          info(`Update ${update.version} deferred by user.`);
+          return;
+        }
+
+        this.showSnackbar(`Downloading update ${update.version}...`, 4000, 'blue');
+        await update.downloadAndInstall();
+        this.showSnackbar('Update installed. Restarting app...', 3000, 'green');
+        await invoke('restart_app');
+      } catch (err) {
+        error(`Auto updater error: ${err}`);
+      }
+    },
     updateUserStatus() {
       invoke('get_user_status', { userProfile: this.selected_profile }).then((status) => {
         info('Updated User Status: ' + JSON.stringify(status));

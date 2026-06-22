@@ -15,6 +15,7 @@
     "@tauri-apps/plugin-dialog": "~2",
     "@tauri-apps/plugin-http": "~2",
     "@tauri-apps/plugin-log": "~2",
+    "@tauri-apps/plugin-updater": "~2",
     "path": "^0.12.7",
     "roboto-fontface": "0.10.0",
     "unified-network": "0.6.4",

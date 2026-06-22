@@ -18,10 +18,6 @@ use tauri_plugin_log::{Target, TargetKind, WEBVIEW_TARGET};
 
 use crate::config::UserStatus;
 
-#[cfg(target_os = "windows")]
-pub static BUNDLED_WEBVIEW2_INSTALLER_DATA: &[u8] =
-    include_bytes!("../bundled_data/MicrosoftEdgeWebview2Setup.exe");
-
 struct AppState {
     app_handle: AppHandle,
     config: RwLock<OptimizerConfig>,
@@ -31,37 +27,17 @@ impl AppState {
     fn check_web_engine_status(&self) {
         #[cfg(target_os = "windows")]
         if tauri::webview_version().is_err() {
-            log::info!("Webview 2 not found on system! Prompting install message...");
+            log::info!("Webview engine not found on system!");
             let app_handle = self.app_handle.clone();
             self.app_handle
                 .dialog()
-                .message("This app requires Microsoft Webview2 Runtime. Install?")
-                .title("Install Microsoft Webview2 Runtime")
-                .kind(tauri_plugin_dialog::MessageDialogKind::Warning)
-                .buttons(tauri_plugin_dialog::MessageDialogButtons::YesNo)
-                .show(move |install| {
-                    if install {
-                        log::info!("Starting Webview2 install process...");
-                        let webview_installer_path =
-                            std::path::Path::new("./MicrosoftEdgeWebview2Setup.exe");
-                        std::fs::write(webview_installer_path, BUNDLED_WEBVIEW2_INSTALLER_DATA)
-                            .expect("Unable to write Webview2 installer to disk");
-                        std::process::Command::new(webview_installer_path)
-                            .arg("/install")
-                            .spawn()
-                            .expect("Unable to start Webview2 installer process")
-                            .wait()
-                            .expect("Error running Webview2 installer");
-                        if std::fs::remove_file("MicrosoftEdgeWebview2Setup.exe").is_err() {
-                            log::warn!("Unable to clean up webview2 install artifacts");
-                        }
-                        log::info!("Restarting app...");
-                        app_handle.restart();
-                    } else {
-                        log::info!("Webview2 not found. Exiting app...");
-                        app_handle.exit(0);
-                    }
-                });
+                .message("This app requires webview runtime to be installed!")
+                .title("Webview Runtime Not Installed")
+                .kind(tauri_plugin_dialog::MessageDialogKind::Error)
+                .buttons(tauri_plugin_dialog::MessageDialogButtons::OkCustom(
+                    "Exit".into(),
+                ))
+                .show(move |_| app_handle.exit(0));
         }
 
         #[cfg(not(target_os = "windows"))]
@@ -150,6 +126,7 @@ fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_http::init())
         .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_updater::Builder::new().build())
         .plugin(
             tauri_plugin_log::Builder::default()
                 .clear_targets()
@@ -201,6 +178,7 @@ fn main() {
             get_user_status,
             query_local_persistant_data,
             query_config,
+            restart_app,
         ])
         .run(tauri::generate_context!())
         .expect("Error while running tauri application");
@@ -323,4 +301,9 @@ fn get_user_status(state: tauri::State<AppState>, user_profile: UserProfile) -> 
         return status.clone();
     }
     UserStatus::default()
+}
+
+#[tauri::command]
+fn restart_app(app_handle: tauri::AppHandle) {
+    app_handle.restart();
 }

@@ -1,0 +1,15 @@
+{
+  "version": "3.1.0",
+  "notes": "Initial auto updater build",
+  "pub_date": "2026-06-22T00:00:00Z",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "REPLACE_WITH_WINDOWS_SIGNATURE",
+      "url": "https://github.com/saad-script/ssbu-emu-optimizer/releases/download/v3.1.0/ssbu-emu-optimizer_3.1.0_x64_en-US.msi.zip"
+    },
+    "linux-x86_64": {
+      "signature": "REPLACE_WITH_LINUX_SIGNATURE",
+      "url": "https://github.com/saad-script/ssbu-emu-optimizer/releases/download/v3.1.0/ssbu-emu-optimizer_3.1.0_amd64.AppImage.tar.gz"
+    }
+  }
+}

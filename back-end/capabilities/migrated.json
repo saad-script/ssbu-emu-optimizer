@@ -25,6 +25,7 @@
     },
     "dialog:default",
     "http:default",
-    "log:default"
+    "log:default",
+    "updater:default"
   ]
 }
