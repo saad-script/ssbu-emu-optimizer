@@ -2,7 +2,7 @@
   "name": "ssbu-emu-optimizer",
   "description": "App to optimize and manage SSBU on emulator",
   "private": true,
-  "version": "3.0.0",
+  "version": "3.1.0",
   "type": "module",
   "scripts": {
     "dev": "cross-env VITE_NETWORK_PROCESSOR=tauri vite",
