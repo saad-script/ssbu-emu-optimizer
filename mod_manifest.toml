@@ -1,0 +1,191 @@
+[[mods]]
+name = "Skyline"
+install_to = [
+  ["(.*/)?main\\.npdm", "atmosphere/contents/01006A800016E000/exefs/"],
+  ["(.*/)?subsdk9", "atmosphere/contents/01006A800016E000/exefs/"],
+]
+[[mods.sources_options]]
+name = "Release"
+[[mods.sources_options.sources]]
+source = "github"
+id = "saad-script/ssbu-online-deluxe"
+
+[[mods]]
+name = "Arcropolis"
+dependencies = ["Skyline"]
+install_to = [
+  ["(.*/)?libarcropolis\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+]
+[[mods.sources_options]]
+name = "Release"
+[[mods.sources_options.sources]]
+source = "github"
+id = "raytwo/arcropolis"
+
+[[mods]]
+name = "NRO Hook"
+dependencies = ["Skyline"]
+install_to = [
+  ["(.*/)?libnro_hook\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+]
+[[mods.sources_options]]
+name = "Release"
+[[mods.sources_options.sources]]
+source = "github"
+id = "ultimate-research/nro-hook-plugin"
+
+[[mods]]
+name = "Param Hook"
+dependencies = ["Skyline"]
+install_to = [
+  ["(.*/)?libparam_hook\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+]
+[[mods.sources_options]]
+name = "Release"
+[[mods.sources_options.sources]]
+source = "github"
+id = "ultimate-research/params-hook-plugin"
+
+[[mods]]
+name = "Smashline"
+dependencies = ["Skyline"]
+install_to = [
+  ["(.*/)?libsmashline_plugin\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+]
+[[mods.sources_options]]
+name = "Release"
+[[mods.sources_options.sources]]
+source = "github"
+id = "HDR-Development/smashline"
+
+[[mods]]
+name = "Imgui Smash"
+dependencies = ["Skyline"]
+install_to = [
+  ["(.*/)?libimgui_smash\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+]
+[[mods.sources_options]]
+name = "Release"
+[[mods.sources_options.sources]]
+source = "github"
+id = "Coolsonickirby/imgui-smash"
+
+[[mods]]
+name = "SSBUSync"
+dependencies = ["Skyline"]
+install_to = [
+  ["(.*/)?libssbusync\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+  ["(.*/)?libnx_over\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+  ["(.*/)?exefs\\.nsp", "atmosphere/contents/00FF0000A11CE0FF/"],
+  ["(.*/)?boot2\\.flag", "atmosphere/contents/00FF0000A11CE0FF/flags/"],
+]
+[[mods.sources_options]]
+name = "Release"
+[[mods.sources_options.sources]]
+source = "github"
+id = "saad-script/ssbu-online-deluxe"
+
+[[mods]]
+name = "SSBU Online Deluxe"
+enabled = true
+description = "A performance and online enhancement mod with latency & render optimizations, and network information"
+dependencies = ["Arcropolis", "Smashline", "NRO Hook", "SSBUSync", "Imgui Smash"]
+install_to = [
+  ["(.*/)?libssbu_online_deluxe\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+  ["(.*/)?libssbu_pia_manager\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+]
+[[mods.sources_options]]
+name = "Release"
+[[mods.sources_options.sources]]
+source = "github"
+id = "saad-script/ssbu-online-deluxe"
+[[mods.sources_options.sources]]
+source = "github"
+id = "project-ultelier/ssbu-pia-interface"
+
+[[mods]]
+name = "Training Modpack"
+enabled = true
+description = "Drastically improves the training mode in Super Smash Bros. Ultimate"
+dependencies = ["NRO Hook", "Param Hook"]
+install_to = [
+  ["(.*/)?libtraining_modpack\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+]
+[[mods.sources_options]]
+name = "Release"
+[[mods.sources_options.sources]]
+source = "github"
+id = "jugeeya/UltimateTrainingModpack"
+
+[[mods]]
+name = "One Slot Effects"
+enabled = true
+description = "Allows each character costume slot have its own visual effects"
+dependencies = ["Skyline"]
+install_to = [
+  ["(.*/)?libone_slot_eff\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+]
+[[mods.sources_options]]
+name = "Release"
+[[mods.sources_options.sources]]
+source = "gamebanana"
+id = "549058"
+
+[[mods]]
+name = "CSS Preserve"
+enabled = true
+description = "Keeps the selection of the fighter you chose between matches"
+dependencies = ["Skyline"]
+install_to = [
+  ["(.*/)?libcss_preserve\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+]
+[[mods.sources_options]]
+name = "Release"
+[[mods.sources_options.sources]]
+source = "gamebanana"
+id = "458245"
+
+[[mods]]
+name = "Eternal Heart"
+enabled = true
+description = "Replaces the background in the Hollow Bastion stage to prevent frame drops and stutters"
+dependencies = ["Arcropolis"]
+install_to = [
+  ["(.*/)?config\\.json", "ultimate/mods/Eternal Heart/"],
+  ["(.*/)?info\\.toml", "ultimate/mods/Eternal Heart/"],
+  ["(.*/)?preview\\.webp", "ultimate/mods/Eternal Heart/"],
+  ["(.*/)?sound/.*", "ultimate/mods/Eternal Heart/"],
+  ["(.*/)?stage/.*", "ultimate/mods/Eternal Heart/"],
+  ["(.*/)?ui/.*", "ultimate/mods/Eternal Heart/"],
+]
+[[mods.sources_options]]
+name = "Release"
+[[mods.sources_options.sources]]
+source = "gamebanana"
+id = "384225"
+version = 0
+
+[[mods]]
+name = "HDR"
+enabled = false
+description = "Gameplay overhaul mod for Super Smash Bros. Ultimate that integrates classic mechanics (wavedashing, L-canceling, etc.)"
+dependencies = ["Arcropolis", "Smashline", "NRO Hook"]
+install_to = [
+  ["switch-package/(.*/)?hdr-launcher\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+  ["switch-package/(.*/)?libstage_alts\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+  ["switch-package/(.*/)?libstage_config\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+  ["switch-package/(.*/)?ultimate/stage-alts/hashes_all", "ultimate/stage-alts/"],
+  ["switch-package/(.*/)?ultimate/mods/hdr/.*", "ultimate/mods/hdr/"],
+  ["switch-package/(.*/)?ultimate/mods/hdr-assets/.*", "ultimate/mods/hdr-assets/"],
+  ["switch-package/(.*/)?ultimate/mods/hdr-stages/.*", "ultimate/mods/hdr-stages/"],
+]
+[[mods.sources_options]]
+name = "Release"
+[[mods.sources_options.sources]]
+source = "github"
+id = "HDR-Development/HDR-Releases"
+[[mods.sources_options]]
+name = "Prerelease"
+[[mods.sources_options.sources]]
+source = "github"
+id = "HDR-Development/HDR-PreReleases"

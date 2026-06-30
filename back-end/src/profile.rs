@@ -54,6 +54,7 @@ impl UserProfile {
         let uuid2: u64 = self.uuid[1].parse().expect("Unable to parse uuid into u64");
         format!("{:016X}{:016X}", uuid2, uuid1).to_string()
     }
+    #[allow(dead_code)]
     pub fn get_uuid_arc_storage_strings(&self) -> (String, String) {
         (self.uuid[0].to_string(), self.uuid[1].to_string())
     }

@@ -5,6 +5,7 @@ import { unifiedApp } from './plugins/unified/unified-app';
 import App from './app.vue';
 import ProfileView from './modules/ProfileView/mod.vue'
 import OptionCard from './modules/OptionCard/mod.vue'
+import ModSelectionChecklist from './modules/ModSelectionChecklist/mod.vue'
 import StatusIcon from './modules/StatusIcon/mod.vue'
 
 function disableContextMenu() {
@@ -23,6 +24,7 @@ function disableSelection() {
 const app = createApp(App);
 app.component('ProfileView', ProfileView);
 app.component('OptionCard', OptionCard);
+app.component('ModSelectionChecklist', ModSelectionChecklist);
 app.component('StatusIcon', StatusIcon);
 
 app.use(vuetify);

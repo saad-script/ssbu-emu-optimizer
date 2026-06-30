@@ -19,9 +19,18 @@ pub enum Optimization {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
-pub enum AdvancedOption {
-    CleanAtmosphere,
-    CleanArc,
+pub enum CleanupOption {
+    CleanAtmosphereAppDir,
+    CleanUltimateDir,
+    EnableMods(Vec<String>),
+    SelectModSources(Vec<SelectedModSourceOption>),
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct SelectedModSourceOption {
+    pub mod_id: String,
+    pub source_option: String,
 }
 
 impl std::fmt::Display for Optimization {
@@ -110,6 +119,7 @@ impl OptimizerConfig {
             .join(SSBU_TITLE_ID))
     }
 
+    #[allow(dead_code)]
     pub fn get_arc_config_folder(&self, user_profile: &UserProfile) -> io::Result<PathBuf> {
         let uuids = user_profile.get_uuid_arc_storage_strings();
         Ok(self

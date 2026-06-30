@@ -1,7 +1,7 @@
 <template>
   <v-dialog width="500">
     <template v-slot:activator="{ props }">
-      <v-card style="max-width: 300px;" v-bind="props">
+      <v-card style="width: 300px; min-width: 300px; max-width: 300px;" v-bind="props">
         <template v-slot:prepend>
           <v-icon size="large" icon="mdi-account-circle"></v-icon>
         </template>
