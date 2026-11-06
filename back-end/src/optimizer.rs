@@ -23,6 +23,10 @@ static BUNDLED_SSBU_SETTINGS: Dir = include_dir!("$CARGO_MANIFEST_DIR/bundled_da
 const DEFAULT_MOD_MANIFEST_URL: &str =
     "https://raw.githubusercontent.com/saad-script/ssbu-emu-optimizer/refs/heads/main/mod_manifest.toml";
 const DEV_LOCAL_MOD_MANIFEST_FILE: &str = "mod_manifest.local.toml";
+// atmosphere app ids that are no longer in the manifest but were installed by older versions
+const LEGACY_ATMOSPHERE_APP_IDS: &[&str] = &[
+    "00FF0000A11CE0FF", // old ssbu-online-deluxe overclocker sysmodule
+];
 
 #[derive(Debug, Deserialize)]
 struct ModsUpdateManifest {
@@ -816,7 +820,10 @@ fn fetch_and_extract_assets(
 }
 
 fn collect_atmosphere_app_ids(manifest: &ModsUpdateManifest) -> HashSet<String> {
-    let mut app_ids = HashSet::new();
+    let mut app_ids: HashSet<String> = LEGACY_ATMOSPHERE_APP_IDS
+        .iter()
+        .map(|app_id| app_id.to_string())
+        .collect();
 
     for mod_entry in manifest.mods.iter() {
         for (_, destination) in mod_entry.install_to.iter() {

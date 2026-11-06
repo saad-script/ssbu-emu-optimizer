@@ -1,18 +1,18 @@
 [[mods]]
-name = "Skyline"
+name = "Ozone"
 install_to = [
-  ["(.*/)?main\\.npdm", "atmosphere/contents/01006A800016E000/exefs/"],
-  ["(.*/)?subsdk9", "atmosphere/contents/01006A800016E000/exefs/"],
+  ["(.*/)?exefs/main\\.npdm", "atmosphere/contents/01006A800016E000/exefs/"],
+  ["(.*/)?exefs/subsdk9", "atmosphere/contents/01006A800016E000/exefs/"],
 ]
 [[mods.sources_options]]
 name = "Release"
 [[mods.sources_options.sources]]
 source = "github"
-id = "saad-script/ssbu-online-deluxe"
+id = "WuBoytH/ozone"
 
 [[mods]]
 name = "Arcropolis"
-dependencies = ["Skyline"]
+dependencies = ["Ozone"]
 install_to = [
   ["(.*/)?libarcropolis\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
   ["(.*/)?ultimate/arcropolis/resources", "ultimate/arcropolis/"],
@@ -25,7 +25,7 @@ id = "raytwo/arcropolis"
 
 [[mods]]
 name = "NRO Hook"
-dependencies = ["Skyline"]
+dependencies = ["Ozone"]
 install_to = [
   ["(.*/)?libnro_hook\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
 ]
@@ -37,7 +37,7 @@ id = "ultimate-research/nro-hook-plugin"
 
 [[mods]]
 name = "Param Hook"
-dependencies = ["Skyline"]
+dependencies = ["Ozone"]
 install_to = [
   ["(.*/)?libparam_hook\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
 ]
@@ -49,7 +49,7 @@ id = "ultimate-research/params-hook-plugin"
 
 [[mods]]
 name = "Smashline"
-dependencies = ["Skyline"]
+dependencies = ["Ozone"]
 install_to = [
   ["(.*/)?libsmashline_plugin\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
 ]
@@ -61,7 +61,7 @@ id = "HDR-Development/smashline"
 
 [[mods]]
 name = "Imgui Smash"
-dependencies = ["Skyline"]
+dependencies = ["Ozone"]
 install_to = [
   ["(.*/)?libimgui_smash\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
 ]
@@ -73,36 +73,61 @@ id = "Coolsonickirby/imgui-smash"
 
 [[mods]]
 name = "SSBUSync"
-dependencies = ["Skyline"]
+dependencies = ["Ozone"]
 install_to = [
   ["(.*/)?libssbusync\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
-  ["(.*/)?libnx_over\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
-  ["(.*/)?exefs\\.nsp", "atmosphere/contents/00FF0000A11CE0FF/"],
-  ["(.*/)?boot2\\.flag", "atmosphere/contents/00FF0000A11CE0FF/flags/"],
+  ["(.*/)?libssbu_oc_bridge\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+  ["(.*/)?00FF0000BEEFB001/exefs\\.nsp", "atmosphere/contents/00FF0000BEEFB001/"],
+  ["(.*/)?00FF0000BEEFB001/flags/boot2\\.flag", "atmosphere/contents/00FF0000BEEFB001/flags/"],
 ]
 [[mods.sources_options]]
 name = "Release"
 [[mods.sources_options.sources]]
 source = "github"
-id = "saad-script/ssbu-online-deluxe"
+id = "project-ultelier/smash-ultelier"
 
 [[mods]]
-name = "SSBU Online Deluxe"
-enabled = true
-description = "A performance and online enhancement mod with latency & render optimizations, and network information"
-dependencies = ["Arcropolis", "Smashline", "NRO Hook", "SSBUSync", "Imgui Smash"]
+name = "SSBU Pia Manager"
+dependencies = ["Ozone"]
 install_to = [
-  ["(.*/)?libssbu_online_deluxe\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
   ["(.*/)?libssbu_pia_manager\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
 ]
 [[mods.sources_options]]
 name = "Release"
 [[mods.sources_options.sources]]
 source = "github"
-id = "saad-script/ssbu-online-deluxe"
+id = "project-ultelier/ssbu-pia-interface"
+
+[[mods]]
+name = "Horizon-OC"
+enabled = true
+description = "Overclock sysmodule used by SSBU Online Deluxe render profiles (console only, ignored on emulators)"
+install_to = [
+  ["(.*/)?atmosphere/exosphere\\.bin", "atmosphere/"],
+  ["(.*/)?atmosphere/kips/hoc\\.kip", "atmosphere/kips/"],
+  ["(.*/)?00FF0000636C6BFF/exefs\\.nsp", "atmosphere/contents/00FF0000636C6BFF/"],
+  ["(.*/)?00FF0000636C6BFF/toolbox\\.json", "atmosphere/contents/00FF0000636C6BFF/"],
+  ["(.*/)?00FF0000636C6BFF/flags/boot2\\.flag", "atmosphere/contents/00FF0000636C6BFF/flags/"],
+]
+[[mods.sources_options]]
+name = "Release"
 [[mods.sources_options.sources]]
 source = "github"
-id = "project-ultelier/ssbu-pia-interface"
+id = "Horizon-OC/Horizon-OC"
+
+[[mods]]
+name = "SSBU Online Deluxe"
+enabled = true
+description = "A performance and online enhancement mod with latency & render optimizations, and network information"
+dependencies = ["Arcropolis", "Smashline", "NRO Hook", "Imgui Smash", "SSBUSync", "SSBU Pia Manager"]
+install_to = [
+  ["(.*/)?libssbu_online_deluxe\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
+]
+[[mods.sources_options]]
+name = "Release"
+[[mods.sources_options.sources]]
+source = "github"
+id = "saad-script/ssbu-online-deluxe"
 
 [[mods]]
 name = "Training Modpack"
@@ -122,7 +147,7 @@ id = "jugeeya/UltimateTrainingModpack"
 name = "One Slot Effects"
 enabled = true
 description = "Allows each character costume slot have its own visual effects"
-dependencies = ["Skyline"]
+dependencies = ["Ozone"]
 install_to = [
   ["(.*/)?libone_slot_eff\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
 ]
@@ -136,7 +161,7 @@ id = "549058"
 name = "CSS Preserve"
 enabled = true
 description = "Keeps the selection of the fighter you chose between matches"
-dependencies = ["Skyline"]
+dependencies = ["Ozone"]
 install_to = [
   ["(.*/)?libcss_preserve\\.nro", "atmosphere/contents/01006A800016E000/romfs/skyline/plugins/"],
 ]
